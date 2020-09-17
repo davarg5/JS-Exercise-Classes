@@ -135,9 +135,27 @@ console.log(volkswagen.drive(40));
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {
 
+class Lambdasian 
+{
+	constructor(obj)
+	{
+		this.name = obj.name;
+		this.age = obj.age;
+		this.location = obj.location;
+	}
+	speak()
+	{
+		return `Hello my name is ${this.name}, and I am from ${this.location}`;
+	}
 }
+
+const lam1 = new Lambdasian({
+  name: 'Bob',
+  age: 25,
+  location: 'Florida'
+});
+console.log(lam1.speak());
 
 /*
   TASK 4
@@ -153,9 +171,38 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
 
+class Instructor extends Lambdasian
+{
+	constructor(obj)
+	{
+		super(obj);
+		this.specialty = obj.specialty;
+		this.favLanguage = obj.favLanguage;
+		this.catchPhrase = obj.catchPhrase;
+	}
+	demo(subject)
+	{
+		return `Today we are learning about ${subject}`
+	}
+	grade(student, subject)
+	{
+		return `${student.name} receives a perfect score on ${subject}`;
+	}	
 }
+
+const lam2 = new Instructor({
+  name: 'Josh',
+  age: 30,
+  location: 'California',
+  specialty: 'web dev',
+  favLanguage: 'CSS',
+  catchPhrase: 'Never give up'
+});
+
+console.log(lam2.speak());
+console.log(lam2.demo('functions'));
+console.log(lam2.grade(lam1, 'functions'));
 
 /*
   TASK 5
