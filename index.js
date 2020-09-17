@@ -40,9 +40,38 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-class Person {
-
+class Person 
+{
+	constructor(name, age)
+	{
+		this.name = name;
+		this.age = age;
+		this.stomach = [];
+	}
+	eat(food)
+	{
+		this.stomach.push(food);
+	}
+	poop()
+	{
+		this.stomach = [];
+	}
+	toString()
+	{
+		return `${this.name}, ${this.age}`
+	}	
 }
+
+const personOne = new Person('Danny', 18);
+const personTwo = new Person('Jenny', 50);
+const personThree = new Person('Anthony', 22);
+
+console.log(personOne.toString())
+personOne.eat('pasta');
+personOne.eat('rice');
+console.log(personOne.stomach);
+personOne.poop();
+console.log(personOne.stomach);
 
 /*
   TASK 2
@@ -58,9 +87,41 @@ class Person {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {
-
+class Car 
+{
+	constructor(model, milesPerGallon)
+	{
+		this.model = model;
+		this.milesPerGallon = milesPerGallon;
+		this.tank = 0;
+		this.odometer = 0;
+	}
+	fill(gallons)
+	{
+		this.tank += gallons;
+	}
+	drive(distance)
+	{
+		this.odometer +=  distance;
+	}
+	drive(distance) 
+	{
+    		this.odometer += distance;
+    		this.tank -= (distance/this.milesPerGallon);
+    		if(this.tank <= 0)
+    		{
+    			return `I ran out of fuel at ${this.odometer} miles!`;
+    		}
+	}
 }
+
+const volkswagen = new Car('Tiguan SE', 20);
+console.log(volkswagen.model);
+console.log(volkswagen.milesPerGallon+" mpg");
+volkswagen.fill(5);
+volkswagen.drive(60);
+console.log(volkswagen.odometer+ " miles");
+console.log(volkswagen.drive(40));
 
 /*
   TASK 3
