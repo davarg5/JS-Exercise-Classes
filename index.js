@@ -254,13 +254,11 @@ class Student extends Lambdasian
   }
 }
 
-const lam3 = new Lambdasian({
+const lam3 = new Student({
   name: 'Daniel',
   age: 18,
   location: 'Long Island',
   specialty: 'web dev',
-  favLanguage: 'Java',
-  catchPhrase: 'I got this',
   previousBackground: 'High School',
   className: 'WEB36',
   favSubjects: ['HTML', 'CSS', 'JS', 'Java']
@@ -269,6 +267,7 @@ const lam3 = new Lambdasian({
 console.log(lam3.listSubjects());
 console.log(lam3.PRAssignment('JS Fundamentals'));
 console.log(lam3.sprintChallenge('JS Fundamentals'));
+
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -282,10 +281,37 @@ console.log(lam3.sprintChallenge('JS Fundamentals'));
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager 
+class ProjectManager extends Instructor
 {
-
+  constructor(obj)
+  {
+    super(obj);
+    this.gradClass = obj.gradClass;
+    this.favInstructor = obj.favInstructor;
+  }
+  standUp(channel)
+  {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject)
+  {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
+
+const lam4 = new ProjectManager({
+  name: 'Dom',
+  age: 30,
+  location: 'California',
+  specialty: 'web dev',
+  favLanguage: 'CSS',
+  catchPhrase: 'You got this',
+  gradClass: 'WEB34',
+  favInstructor: 'Sean'
+});
+
+console.log(lam4.standUp('web36_dom'));
+console.log(lam4.debugsCode(lam3,'JSFundamentals'));
 
 /*
   STRETCH PROBLEM (no tests!)
