@@ -219,10 +219,56 @@ console.log(lam2.grade(lam1, 'functions'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian
+{
+  constructor(obj)
+  {
+    super(obj);
+    this.previousBackground = obj.previousBackground;
+    this.className = obj.className;
+    this.favSubjects = obj.favSubjects;
+  }
+  listSubjects()
+  {
+    let str = "Loving";
+    for(let i=0; i<this.favSubjects.length; i++)
+    {
+      if(i === this.favSubjects.length-1)
+      {
+        str = str + " "+this.favSubjects[i]+"!";
+      }
+      else
+      {
+        str = str+" "+this.favSubjects[i]+",";
+      }
+    }
+    return str;
+  }
+  PRAssignment(subject)
+  {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject)
+  {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
 
+const lam3 = new Lambdasian({
+  name: 'Daniel',
+  age: 18,
+  location: 'Long Island',
+  specialty: 'web dev',
+  favLanguage: 'Java',
+  catchPhrase: 'I got this',
+  previousBackground: 'High School',
+  className: 'WEB36',
+  favSubjects: ['HTML', 'CSS', 'JS', 'Java']
+});
+
+console.log(lam3.listSubjects());
+console.log(lam3.PRAssignment('JS Fundamentals'));
+console.log(lam3.sprintChallenge('JS Fundamentals'));
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -236,7 +282,8 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager 
+{
 
 }
 
